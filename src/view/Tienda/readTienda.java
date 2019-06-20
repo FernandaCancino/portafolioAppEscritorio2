@@ -187,7 +187,7 @@ public class readTienda extends javax.swing.JFrame {
 "                               ,TIENDA.CALLEDIRECCION \n" +
 "                               ,TIENDA.NUMERODIRECCION \n" +
 "                               ,TIENDA.OBSERVACIONDIRECCION \n" +
-"                          ,to_char(TIENDA.FECHAREGISTRO) \n" +
+"                          ,to_char(TIENDA.FECHAREGISTRO,'DD-mon-YYYY') \n" +
 "                            ,TIENDA.TELEFONO\n" +
 "                          from TIENDA,EMPRESA,USUARIO,COMUNA\n" +
 "                        where TIENDA.IDEMPRESA=EMPRESA.IDEMPRESA and \n" +
@@ -320,7 +320,8 @@ public class readTienda extends javax.swing.JFrame {
         jLabel2.setText("Tiendas Retail Mis Ofertas");
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel1.setText("Mostrar Tienda");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tienda.png"))); // NOI18N
+        jLabel1.setText("   Mostrar Tienda");
 
         buscartodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -439,11 +440,7 @@ public class readTienda extends javax.swing.JFrame {
         jLabel10.setText("Nombre de Tienda");
 
         cmbxUsuarios.setEditable(true);
-        cmbxUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbxUsuariosActionPerformed(evt);
-            }
-        });
+        cmbxUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         txtCalleDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -469,13 +466,6 @@ public class readTienda extends javax.swing.JFrame {
         });
 
         jLabel16.setText("Codigo");
-
-        cmbxEmpresas.setEditable(true);
-        cmbxEmpresas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbxEmpresasActionPerformed(evt);
-            }
-        });
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel14.setText("Empresa Asociada");
@@ -651,16 +641,13 @@ public class readTienda extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1262, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(173, 173, 173)
-                                .addComponent(btnMenuPrincipalProd, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(84, 84, 84)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(210, 210, 210)
+                        .addComponent(btnMenuPrincipalProd, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(204, 204, 204)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -710,7 +697,7 @@ public class readTienda extends javax.swing.JFrame {
 "                               ,TIENDA.CALLEDIRECCION \n" +
 "                               ,TIENDA.NUMERODIRECCION \n" +
 "                               ,TIENDA.OBSERVACIONDIRECCION \n" +
-"                          ,to_char(TIENDA.FECHAREGISTRO) \n" +
+"                          ,to_char(TIENDA.FECHAREGISTRO,'DD-MON-YYYY') \n" +
 "                            ,TIENDA.TELEFONO\n" +
 "                          from TIENDA INNER JOIN EMPRESA ON \n" +
 "                         TIENDA.IDEMPRESA=EMPRESA.IDEMPRESA INNER JOIN \n" +
@@ -778,7 +765,7 @@ public class readTienda extends javax.swing.JFrame {
         //enviamos los datos de la tabla a las variables
         String codigo = ""+tbl.getValueAt(clic_tabla, 0);
         String nombre = ""+tbl.getValueAt(clic_tabla, 1);
-        String empresa = ""+tbl.getValueAt(clic_tabla,2);
+        String empresa =""+tbl.getValueAt(clic_tabla,2);
         String cliente = ""+tbl.getValueAt(clic_tabla,3);
         String comuna = ""+tbl.getValueAt(clic_tabla, 6);
         String calle = ""+tbl.getValueAt(clic_tabla, 7);
@@ -792,9 +779,14 @@ public class readTienda extends javax.swing.JFrame {
         txtNumero.setText(numero);
         txtObservacion.setText(observacion);
         txtTelefono.setText(Telefono);
+        
         cmbxEmpresas.setSelectedItem(empresa);
         cmbxUsuarios.setSelectedItem(cliente);
         cmbxComuna.setSelectedItem(comuna);
+       // cmbxEmpresas.setActionCommand(empresa);
+        //cmbxUsuarios.setActionCommand(cliente);
+        //cmbxComuna.setActionCommand(comuna);
+        
 
         int column = tbl.getColumnModel().getColumnIndexAtX(evt.getX());
         int row = evt.getY()/tbl.getRowHeight();
@@ -854,7 +846,8 @@ public class readTienda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverProductoActionPerformed
 
     private void btnGuardarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProductoActionPerformed
-
+     if(txtCodigo.getText().trim().length() == 0)
+ {JOptionPane.showMessageDialog(null, "seleccione un objeto para modificar", "Error", JOptionPane.ERROR_MESSAGE);}else{
         if(txtNombreTienda.getText().trim().length() != 0 && txtCalleDireccion.getText().trim().length() != 0
             && txtObservacion.getText().trim().length() != 0 && txtNumero.getText().trim().length() != 0
         )//este if es para validar algunos campos vacios
@@ -876,6 +869,7 @@ public class readTienda extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null, "No debe dejar los campos vacios");
         }
+     }
     }//GEN-LAST:event_btnGuardarProductoActionPerformed
 
     private void txtCalleDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCalleDireccionKeyTyped
@@ -904,14 +898,6 @@ public class readTienda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Ingresar solo Numeros");
         }
     }//GEN-LAST:event_txtNumeroKeyTyped
-
-    private void cmbxUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxUsuariosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbxUsuariosActionPerformed
-
-    private void cmbxEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxEmpresasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbxEmpresasActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:

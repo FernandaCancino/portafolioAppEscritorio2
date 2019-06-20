@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
@@ -41,6 +42,7 @@ import model.Usuarios.Usuario;
 import model.comboBox.CbxTienda;
 import model.producto.Producto;
 import oracle.jdbc.OracleResultSet;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 //import sun.misc.IOUtils;
 
 /**
@@ -88,7 +90,7 @@ LoginUser mod;
         CbxTienda comboboxTienda = new CbxTienda();
         cbxTiendaProductoMod.removeAllItems();
         comboboxTienda.getValuesTienda(cbxTiendaProductoMod);
-        
+        AutoCompleteDecorator.decorate(cbxTiendaProductoMod);
         
         //este codigo sirve para que al momento de elegir la crapeta la interface se vea bonita
           UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -119,6 +121,7 @@ LoginUser mod;
         CbxTienda comboboxTienda = new CbxTienda();
         cbxTiendaProductoMod.removeAllItems();
         comboboxTienda.getValuesTienda(cbxTiendaProductoMod);
+         AutoCompleteDecorator.decorate(cbxTiendaProductoMod);
         
         
         //este codigo sirve para que al momento de elegir la crapeta la interface se vea bonita
@@ -239,7 +242,8 @@ LoginUser mod;
         jPanel1.setToolTipText("");
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel9.setText("Modificar Producto");
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/prod.png"))); // NOI18N
+        jLabel9.setText("  Modificar Producto");
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
@@ -252,7 +256,7 @@ LoginUser mod;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -267,10 +271,20 @@ LoginUser mod;
         cbxRubroProductoMod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         txtStockProductoMod.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtStockProductoMod.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtStockProductoModKeyTyped(evt);
+            }
+        });
 
         cbxCategoriaProductoMod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         txtPrecioProductoMod.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtPrecioProductoMod.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioProductoModKeyTyped(evt);
+            }
+        });
 
         txtNombreProductoMod.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtNombreProductoMod.addActionListener(new java.awt.event.ActionListener() {
@@ -304,11 +318,7 @@ LoginUser mod;
             }
         });
 
-        cbxTiendaProductoMod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxTiendaProductoModActionPerformed(evt);
-            }
-        });
+        cbxTiendaProductoMod.setToolTipText("");
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel6.setText("Tienda");
@@ -434,11 +444,8 @@ LoginUser mod;
     private void btnModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProductoActionPerformed
         try {
             // TODO add your handling code here:
-
             validaDatosVacios();
-            readProductos rp = new readProductos(mod);
-            rp.setVisible(true); 
-            rp.pack();
+          
         
             
         } catch (SQLException ex) {
@@ -447,17 +454,27 @@ LoginUser mod;
             Logger.getLogger(updateProductos.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        this.setVisible(false);
+       
     }//GEN-LAST:event_btnModificarProductoActionPerformed
 
     public void validaDatosVacios() throws SQLException, FileNotFoundException{
+       
+        
         if(    txtNombreProductoMod.getText().trim().length() != 0
             && txtPrecioProductoMod.getText().trim().length() != 0
             && txtStockProductoMod.getText().trim().length() != 0
             && ((JTextField)dtFechaVencimientoMod.getDateEditor().getUiComponent()).getText().trim().length() != 0
           )//este if es para validar algunos campos vacios
         {
+              
+             if (!(Pattern.matches("^[0-9]{2}+[-]{1}+[a-zA-Z]{3}+[-]{1}+[0-9]{4}+$", ((JTextField)dtFechaVencimientoMod.getDateEditor().getUiComponent()).getText()))) 
+                        {JOptionPane.showMessageDialog(null, "formato de fecha incorrecta; \n ejemplo: dd-mmm-yyyy", "Error", JOptionPane.ERROR_MESSAGE);}else{
             modificar();
+             this.setVisible(false);
+            readProductos rp = new readProductos(mod);
+            rp.setVisible(true); 
+            rp.pack();
+             }
             
         }
         else{
@@ -537,9 +554,35 @@ LoginUser mod;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreProductoModActionPerformed
 
-    private void cbxTiendaProductoModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTiendaProductoModActionPerformed
+    private void txtPrecioProductoModKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioProductoModKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxTiendaProductoModActionPerformed
+           char validar = evt.getKeyChar();
+
+        if (Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(rootPane, "Ingresar Solo Numeros");
+        }else if (validar == '-' ){
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo se aceptan numeros Positivos");
+        }
+    }//GEN-LAST:event_txtPrecioProductoModKeyTyped
+
+    private void txtStockProductoModKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockProductoModKeyTyped
+        // TODO add your handling code here:
+           char validar = evt.getKeyChar();
+
+        if (Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(rootPane, "Ingresar Solo Numeros");
+        }else if (validar == '-' ){
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo se aceptan numeros Positivos");
+        }
+    }//GEN-LAST:event_txtStockProductoModKeyTyped
 
     /**
      * @param args the command line arguments
@@ -595,7 +638,7 @@ LoginUser mod;
     private javax.swing.JButton btnVolverProductoM;
     public static javax.swing.JComboBox<String> cbxCategoriaProductoMod;
     public static javax.swing.JComboBox<String> cbxRubroProductoMod;
-    private javax.swing.JComboBox<model.comboBox.CbxTienda> cbxTiendaProductoMod;
+    public static javax.swing.JComboBox<CbxTienda> cbxTiendaProductoMod;
     public static com.toedter.calendar.JDateChooser dtFechaVencimientoMod;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;

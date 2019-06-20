@@ -8,6 +8,7 @@ package view.crudOferta;
 import conectorBD.JavaConnectDb;
 import controller.Renders;
 import controller.oferta.CrudOferta;
+import controller.producto.CrudProducto;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -29,6 +30,12 @@ import javax.swing.table.DefaultTableModel;
 import model.LoginUser;
 import model.Oferta.Oferta;
 import model.TablaImagen;
+import model.producto.Producto;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import static view.crudOferta.updateOferta.cbxProductoOfertaMod;
+import static view.crudOferta.updateOferta.cbxTiendaOfertaMod;
+import view.crudProductos.readProductos;
+import static view.crudProductos.updateProductos.cbxTiendaProductoMod;
 import view.menuPrincipal;
 
 /**
@@ -121,8 +128,8 @@ LoginUser mod;
         tablaOferta.addColumn("Imagen"); 
         
         
-        tablaOferta.addColumn(""); //Modificar
-        tablaOferta.addColumn(""); //Eliminar
+        tablaOferta.addColumn("Modificar"); //Modificar
+        tablaOferta.addColumn("Eliminar"); //Eliminar
         
         //JButton btn_modificar = new JButton("Modificar");
         btn_modificar.setName("m");
@@ -307,7 +314,8 @@ LoginUser mod;
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("Mantenedor de Ofertas");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/oferta.png"))); // NOI18N
+        jLabel1.setText("  Mantenedor de Ofertas");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel3.setText("Buscar ");
@@ -409,7 +417,7 @@ LoginUser mod;
         // TODO add your handling code here:
 
         String[] titulos = {"Id Oferta", "Nombre Oferta", "Tienda", "Prodcuto", "Precio Producto", "Descuento (%)","Stock",
-                            "Minimo de Producto", "Maximo de Producto", "Estado"};
+                            "Minimo de Producto", "Maximo de Producto", "Estado","Imagen","Modificar","Eliminar"};
 
         String sql = "SELECT   OFERTA.IDOFERTA \n" +
                         "     ,OFERTA.NOMBREOFERTA\n" +
@@ -438,43 +446,22 @@ LoginUser mod;
                         + "OR ESTADO.GLOSAESTADO           LIKE'%" + buscartodo.getText() + "%' "
                         + "AND OFERTA.IDESTADO = 0";
                 
-        
-        /*
-        String sql = "SELECT  OFERTA.IDOFERTA \n" +
-                       "     ,OFERTA.NOMBREOFERTA \n" +
-                       "     ,TIENDA.NOMBRETIENDA \n" +
-                       "     ,PRODUCTO.NOMBREPRODUCTO \n" +
-                       "     ,PRODUCTO.PRECIOPRODUCTO \n" +
-                       "     ,OFERTA.DESCUENTOOFERTA \n" +
-                       "     ,OFERTA.STOCKPRODUCTOOFERTA \n" +
-                       "     ,OFERTA.MINIMOPRODUCTO \n" +
-                       "     ,OFERTA.MAXIMOPRODUCTO \n" +
-                       "     ,ESTADO.GLOSAESTADO \n" +
-                       "     ,OFERTA.IMAGENOFERTA \n" +
-                    "FROM PRODUCTO INNER JOIN OFERTA ON PRODUCTO.IDPRODUCTO = OFERTA.IDPRODUCTO\n" +
-                    "              INNER JOIN ESTADO ON OFERTA.IDESTADO = ESTADO.IDESTADO\n" +
-                    "              INNER JOIN TIENDA ON OFERTA.IDTIENDA = TIENDA.IDTIENDA"  +
-                    "WHERE OFERTA.IDOFERTA              LIKE'%" + buscartodo.getText() + "%' "
-                     + "OR OFERTA.NOMBREOFERTA          LIKE'%" + buscartodo.getText() + "%' "
-                     + "OR TIENDA.NOMBRETIENDA          LIKE'%" + buscartodo.getText() + "%' "
-                     + "OR PRODUCTO.NOMBREPRODUCTO      LIKE'%" + buscartodo.getText() + "%' "
-                     + "OR PRODUCTO.PRECIOPRODUCTO      LIKE'%" + buscartodo.getText() + "%' "
-                     + "OR OFERTA.DESCUENTOOFERTA       LIKE'%" + buscartodo.getText() + "%' "
-                     + "OR OFERTA.STOCKPRODUCTOOFERTA   LIKE'%" + buscartodo.getText() + "%' "
-                     + "OR OFERTA.MINIMOPRODUCTO        LIKE'%" + buscartodo.getText() + "%' "
-                     + "OR OFERTA.MAXIMOPRODUCTO        LIKE'%" + buscartodo.getText() + "%' "
-                     + "OR ESTADO.GLOSAESTADO           LIKE'%" + buscartodo.getText() + "%' ";
-        */
-        tablaOferta = new DefaultTableModel(null, titulos);
+ 
+        tablaOferta = new DefaultTableModel(null, titulos){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }  
+    };
 
         try {
             Connection cn = obj.ConnectBd();
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            Object datos[] = new Object[10];
-            while (rs.next()) {
-
+            Object datos[] = new Object[40];
+            while (rs.next()) {     
+                
                 datos[0] = rs.getString(1);
                 datos[1] = rs.getString(2);
                 datos[2] = rs.getString(3);
@@ -482,9 +469,43 @@ LoginUser mod;
                 datos[4] = rs.getString(5);
                 datos[5] = rs.getString(6);
                 datos[6] = rs.getString(7);
+                datos[7] = rs.getString(8);
+                datos[8] = rs.getString(9);
+                datos[9] = rs.getString(10);
+                //datos[10] = rs.getString(11);
+                
+                Blob blob = rs.getBlob(11);//llamamos la imagen
 
-                tablaOferta.addRow(datos);
+                if(blob != null)//mandamos un mensaje de no imagen si es null
+                {
+                   try{
+                        byte[] data = blob.getBytes(1, (int)blob.length());
+                        BufferedImage img = null;
+                        try{
+                        img = ImageIO.read(new ByteArrayInputStream(data));
+                        }catch(Exception ex){
+                        System.out.println(ex.getMessage());
+                        }
+                        //de cierto modo necesitamos tener la imagen para ello debemos conocer la ruta de dicha imagen
+                        Image foto = img;
 
+                        //Le damos dimension a nuestro label que tendra la imagen
+                        foto = foto.getScaledInstance(110, 110, Image.SCALE_DEFAULT);
+                        ImageIcon icono = new ImageIcon(foto);
+                        datos[10] = new JLabel(icono);
+                    }catch(Exception ex){
+                        datos[10] = "No Image";
+                    }
+                }
+                else{
+                   datos[10] = "No Image";
+                }
+                
+                datos[11] = btn_modificar;
+                datos[12] = btn_eliminar;
+                
+                tablaOferta.addRow(datos);   
+                
             }
             tblOferta.setModel(tablaOferta);
 
@@ -549,9 +570,9 @@ LoginUser mod;
         String precioProducto   = ""+tblOferta.getValueAt(clic_tabla, 4);
         String dscto            = ""+tblOferta.getValueAt(clic_tabla, 5);
         String stock            = ""+tblOferta.getValueAt(clic_tabla, 6);
-        String minProd          = ""+tblOferta.getValueAt(clic_tabla, 8);
-        String maxProd          = ""+tblOferta.getValueAt(clic_tabla, 9);
-        String estado           = ""+tblOferta.getValueAt(clic_tabla, 10);
+        String minProd          = ""+tblOferta.getValueAt(clic_tabla, 7);
+        String maxProd          = ""+tblOferta.getValueAt(clic_tabla, 8);
+        String estado           = (String)tblOferta.getValueAt(clic_tabla, 9);
         
         
         int column =  tblOferta.getColumnModel().getColumnIndexAtX(evt.getX());
@@ -571,10 +592,16 @@ LoginUser mod;
                 if(boton.getName().equals("m")){
                     
                     System.out.println("Click en el boton modificar");
-                    System.out.println("idOferta" + idOferta);
-                    System.out.println("nombreOferta" + nombreOferta);
-                    System.out.println("nombreTienda" + nombreTienda);
-                    System.out.println("nombreProducto" + nombreProducto);
+                    System.out.println("..............................");
+                     System.out.println("cargando.........");
+                    System.out.println("idOferta : " + idOferta);
+                    System.out.println("nombreOferta :" + nombreOferta);
+                    System.out.println("nombreTienda : " + nombreTienda);
+                    System.out.println("nombreProducto : " + nombreProducto);
+                    System.out.println("precio : " + precioProducto);
+                     System.out.println("stock : " + stock);
+                     System.out.println("MaxProducto : " + maxProd);
+                     System.out.println("Estado : " + estado);
                     
                     this.setVisible(false);
                     updateOferta ud = new updateOferta(mod);
@@ -582,18 +609,43 @@ LoginUser mod;
 
                     updateOferta.txtIdOfertaMod.setText(idOferta);
                     updateOferta.txtNombreOfertaMod.setText(nombreOferta);
-                    //updateOferta.cbxTiendaOfertaMod.setSelectedItem(nombreTienda);
-                    //updateOferta.cbxProductoOfertaMod.setSelectedItem(nombreProducto);
+                    updateOferta.cbxTiendaOfertaMod.setSelectedItem(nombreTienda);
+                    updateOferta.cbxProductoOfertaMod.setSelectedItem(nombreProducto);
+                   //updateOferta.cbxEstadoOfertaMod.setSelectedItem(estado);
+                   
                     updateOferta.txtPrecioProductoOfertaMod.setText(precioProducto);
                     updateOferta.txtDesceuntoOfertaMod.setText(dscto);
                     updateOferta.txtStockOfertaMod.setText(stock);
                     updateOferta.txtMinProductoOfertaMod.setText(minProd);
                     updateOferta.txtMaxProductoOfertaMod.setText(maxProd);
-                    //updateOferta.cbxEstadoOfertaMod.setSelectedItem(estado);
+                    
+        if(!"Activo".equals(estado))
+        {
+           updateOferta.rbInactivo.setSelected(true);
+        }
+        else
+        {
+             updateOferta.rbActivo.setSelected(true);
+        }
+                    
+                    
+                  
                     
                     /***************************/
+                    
+                     Oferta ofert=new Oferta();
+                     
+                   ofert.setIdOferta(Integer.parseInt(idOferta));
+                   CrudOferta crud=new CrudOferta();
+                    try {
+                        crud.mostrarImagen(ofert);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(readProductos.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                     ud.pack();
+                    
+   
 
                 }
                 if(boton.getName().equals("e")){

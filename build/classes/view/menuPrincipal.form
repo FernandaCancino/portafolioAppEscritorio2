@@ -28,18 +28,18 @@
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnMantenedorProducto" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnMantenedorOferta" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnMantenedorEmpresa" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnMantenedorTienda" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnMantenedorDescuento" alignment="0" pref="215" max="32767" attributes="0"/>
                   <Component id="btnMantenedorUsuario1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnMantenedorOferta" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnConsultaValoracionPorTienda" pref="215" max="32767" attributes="0"/>
+                  <Component id="btnConsultaValoracionPorTienda" max="32767" attributes="0"/>
                   <Component id="btnReporteResumenPorTienda" alignment="0" pref="0" max="32767" attributes="0"/>
                   <Component id="btnSalir" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnMantenedoRubro" pref="215" max="32767" attributes="0"/>
+                  <Component id="btnMantenedoRubro" max="32767" attributes="0"/>
                   <Component id="btnDescargaArchivosBI" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
@@ -52,37 +52,39 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnMantenedorProducto" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
-                  <Component id="btnMantenedoRubro" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="btnMantenedorProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnMantenedoRubro" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnMantenedorOferta" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
                   <Component id="btnConsultaValoracionPorTienda" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="btnMantenedorOferta" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnReporteResumenPorTienda" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="btnMantenedorEmpresa" pref="59" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnReporteResumenPorTienda" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
-                  <Component id="btnMantenedorEmpresa" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="btnMantenedorTienda" min="-2" pref="57" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnMantenedorDescuento" min="-2" pref="57" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="btnDescargaArchivosBI" min="-2" pref="67" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnDescargaArchivosBI" alignment="0" min="-2" pref="52" max="-2" attributes="0"/>
-                  <Component id="btnMantenedorTienda" min="-2" pref="52" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnMantenedorDescuento" min="-2" pref="52" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnSalir" min="-2" pref="52" max="-2" attributes="0"/>
+                      <Component id="btnMantenedorUsuario1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="btnMantenedorUsuario1" min="-2" pref="52" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="0" pref="34" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -101,10 +103,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="312" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel2" min="-2" pref="248" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="lblNombre1" min="-2" pref="196" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="44" max="32767" attributes="0"/>
                   <Component id="lblRol" min="-2" pref="98" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
@@ -112,30 +116,30 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" max="32767" attributes="0"/>
-                      <Component id="lblRol" max="32767" attributes="0"/>
-                      <Component id="lblNombre1" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel2" pref="54" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblRol" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblNombre1" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="33" green="33" red="33" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Tiendas Retail Mis Ofertas"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblRol">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -150,11 +154,35 @@
             </Property>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="2"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Tiendas Retail Mis Ofertas"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagenes/identificacion.png"/>
+            </Property>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JButton" name="btnMantenedorProducto">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mantenedor Producto"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/prod.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="  Mantenedor Producto"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMantenedorProductoActionPerformed"/>
@@ -162,7 +190,13 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnMantenedorOferta">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mantenedor Oferta"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/oferta.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value=" Mantenedor Oferta"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMantenedorOfertaActionPerformed"/>
@@ -170,7 +204,13 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnMantenedorEmpresa">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mantenedor Empresa"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/empresa.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value=" Mantenedor Empresa"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMantenedorEmpresaActionPerformed"/>
@@ -178,7 +218,13 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnMantenedorTienda">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mantenedor Tienda"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/tienda.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value=" Mantenedor Tienda"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMantenedorTiendaActionPerformed"/>
@@ -186,7 +232,13 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnMantenedorDescuento">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/descuento.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mantenedor Descuento"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMantenedorDescuentoActionPerformed"/>
@@ -194,7 +246,13 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnMantenedoRubro">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mantenedor Rubro"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/rubro.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="             Mantenedor Rubro"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMantenedoRubroActionPerformed"/>
@@ -202,7 +260,13 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnConsultaValoracionPorTienda">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/reporte.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Consulta Valoracion por Tienda"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaValoracionPorTiendaActionPerformed"/>
@@ -210,7 +274,13 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnDescargaArchivosBI">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Descarga Archivos BI"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/BI.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="       Descarga Archivos BI"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDescargaArchivosBIActionPerformed"/>
@@ -218,12 +288,27 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnReporteResumenPorTienda">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/informe.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Reporte Resumen por Tienda"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporteResumenPorTiendaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/salir.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Salir"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
@@ -231,7 +316,13 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnMantenedorUsuario1">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/usuarios.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mantenedor Usuario"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMantenedorUsuario1ActionPerformed"/>

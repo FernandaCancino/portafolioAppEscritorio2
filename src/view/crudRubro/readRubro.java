@@ -114,8 +114,8 @@ public class readRubro extends javax.swing.JFrame {
             Statement st = cn.createStatement();
             String sql = "SELECT IDRUBRO\n" +
                          "      ,NOMBRERUBRO\n" +
-                         "      ,IDCATEGORIA\n" +
-                         "FROM RUBRO";
+                         "      ,NOMBRECATEGORIA\n" +
+                         "FROM RUBRO  R INNER JOIN CATEGORIA C ON R.IDCATEGORIA=C.IDCATEGORIA";
             ResultSet rs = st.executeQuery(sql);
             
             Object datos[] = new Object[40];/* A la cantidad objetos le puse 40
@@ -188,7 +188,8 @@ public class readRubro extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("Mantenedor de Rubro");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rubro.png"))); // NOI18N
+        jLabel1.setText("  Mantenedor de Rubro");
 
         tblRubro.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tblRubro.setModel(new javax.swing.table.DefaultTableModel(
@@ -255,7 +256,7 @@ public class readRubro extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(btnAgregarRubro, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnMenuPrincipalRubro, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
@@ -301,7 +302,7 @@ public class readRubro extends javax.swing.JFrame {
                     
                     updateRubro ud = null;
                     try {
-                        ud = new updateRubro();
+                        ud = new updateRubro(mod);
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(readRubro.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (InstantiationException ex) {
